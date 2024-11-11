@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Filtered Pets Results</title>
+    <style>
+        body {
+            background-color: beige;
+            font-family: calibri;
+            padding: 20px;
+        }
+
+        .pet-list {
+            margin-top: 20px;
+        }
+
+        .pet-card {
+            background-color: white;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .no-results {
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+        }
+
+        .home-link {
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+    </style>
+
+
+</head>
+<body>
+<a class="home-link" href="/homePage">Home Page</a>
+
+<h2>Filtered Pet Results</h2>
+
+<!-- Display filtered pets -->
+<div class="pet-list">
+    <div th:each="dog : ${dogs}" class="pet-card">
+        <p><strong>Breed:</strong> <span th:text="${dog.breed}">Breed</span></p>
+        <p><strong>Sex:</strong> <span th:text="${dog.sex}">Sex</span></p>
+        <p><strong>Age:</strong> <span th:text="${dog.age}">Age</span></p>
+        <p><strong>Color:</strong> <span th:text="${dog.colour}">Colour</span></p>
+    </div>
+</div>
+
+<!-- Show message if no pets found -->
+<p th:if="${#lists.isEmpty(dogs)}" class="no-results">
+    No pets found within the specified ranges.
+</p>
+</body>
+</html>
